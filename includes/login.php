@@ -1,5 +1,5 @@
 <?php include "connection.php";
-
+session_start();
 
 if(isset($_POST['login']))
 {
@@ -19,10 +19,25 @@ if(isset($_POST['login']))
 
 	while($row=mysqli_fetch_assoc($login_result))
 	{
-		echo $row['username'];
-	
+		$db_userid=$row['user_id'];
+		$db_username= $row['username'];
+		$db_password= $row['userpassword'];
+		$db_user_firstname=$row['user_firstname'];
+		$db_user_role=$row['user_role'];
 	}
 	
+	if ($db_username===$username && $db_password===$password) 
+	{
+		$_SESSION['user_id']=$db_userid;
+		$_SESSION['user_firstname']=$db_user_firstname;
+		$_SESSION['user_role']=$db_user_role;
+		header("Location:../admin");
+		exit();
+	}
+	else
+	{
+		header("Location:../index.php");
+	}
 }
 
 

@@ -1,9 +1,20 @@
 <?php 
-    
+    session_start();
+    if (isset($_SESSION['user_role'])) 
+    {
+         if ($_SESSION['user_role']!=="Administrator") 
+         {
+             header("Location:../index.php");
+         }
+    } 
+    else
+    {
+        header("Location:../index.php");
+    }
     include "Header.php";
     include "Navigation.php";
     include "sidebarmenu.php";
-
+    
  ?>
            
 
@@ -15,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Welcome Back Admin
+                            Welcome Back Admin <?php echo $_SESSION['user_firstname'] ?>
                             
                         </h1>
                         <ol class="breadcrumb">

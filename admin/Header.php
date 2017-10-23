@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php ob_start(); ?>
+<?php ob_start();
+?>
 <html lang="en">
 
 <head>
